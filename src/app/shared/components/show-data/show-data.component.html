@@ -1,0 +1,87 @@
+<nb-card
+  class="mb-0"
+  [ngClass]="showDataOptions?.card_type === 'large' ? 'large-card' : showDataOptions?.card_type === 'small' ? 'small-card' : 'medium-card'"
+  [nbSpinner]="isCardLoading"
+  nbSpinnerStatus="primary"
+  nbSpinnerSize="small"
+>
+  <nb-card-body class="custom-card-body">
+    <ng-container *ngIf="isDataAvailable; else noData">
+      <div class="inner-container">
+        <div class="m-0 slider-container">
+          <div class="date">
+            <span id="min-slider-date">{{ minDate }}</span>
+            <span *ngIf="sliderOnMove" id="selected-slider-date">{{ sliderDate }}</span>
+            <span id="max-slider-date">{{ maxDate }}</span>
+          </div>
+          <div class="slider">
+            <p-slider
+              [(ngModel)]="sliderVal"
+              [disabled]="sliderDisabled"
+              [min]="0"
+              [max]="timestamps.length - 1"
+              [step]="1"
+              (onSlideEnd)="afterSliding()"
+              (onChange)="onSlide()"
+            ></p-slider>
+          </div>
+        </div>
+        <div class="container-head">
+          <div class="row">
+            <div class="date-time-header d-flex flex-row h-100">
+              <div class="nav-icons">
+                <button class="button-left" [disabled]="IsPrevDisabled" (click)="previous()">
+                  <img alt="previous" />
+                </button>
+              </div>
+              <div class="time-value d-flex flex-column" *ngFor="let i of lodash.range(columnCount)">
+                <div id="date">{{ dates[i] }}</div>
+                <div id="time">{{ times[i] }}</div>
+              </div>
+              <div class="nav-icons">
+                <button class="button-right" (click)="next()">
+                  <img alt="next" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="table-data">
+            <div class="row primary" *ngFor="let device of deviceDetails">
+              <div class="group-header">
+                <span>{{ device.grpName }}</span>
+              </div>
+              <div class="table-content">
+                <div class="d-flex flex-column" id="data" *ngFor="let data of device.grpData">
+                  <div class="row table-value">
+                    <div class="param-name text-left parameter-name">
+                      <span
+                        >{{ data.name }}<span *ngIf="data.unit" id="unit">({{ data.unit }})</span></span
+                      >
+                    </div>
+                    <div class="data-value text-center" *ngFor="let i of lodash.range(0, columnCount)">
+                      <span class="link-button" *ngIf="data.id === 'APP_USAGE' && data.values[i]; else showValue">
+                        <button *ngIf="data.values[i]['total']" (click)="openParameterModal(data.id, data.name, data.values[i]['details'])">
+                          {{ data.values[i]['total'] }}
+                        </button>
+                      </span>
+                      <ng-template #showValue>
+                        <span>{{ data.values[i] }}</span>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noData>
+      <div *ngIf="!isCardLoading" class="h-100 w-100 text-center">
+        <span class="no-data-label">No Data</span>
+      </div>
+    </ng-template>
+  </nb-card-body>
+</nb-card>

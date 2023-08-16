@@ -1,0 +1,70 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+.container {
+  overflow-y: auto;
+  font-weight: 500;
+  background: nb-theme(card-color);
+  color: nb-theme(card-text-color);
+  padding: 10px !important;
+  border: 1px solid nb-theme(chart-border-color);
+}
+.medium-card {
+  border: hidden !important;
+}
+.custom-card-body {
+  color: nb-theme(card-text-color);
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  margin-left: 1%;
+}
+nb-card-body {
+  padding: 0.5rem 0.5rem !important;
+}
+
+.header {
+  background: nb-theme(card-color);
+  color: nb-theme(card-text-color);
+  font-size: 1rem;
+  margin-left: 0.5%;
+}
+.no-data-block {
+  text-align: center;
+}
+.no-data-label {
+  font-size: 0.7rem;
+  color: nb-theme(no-data-color);
+}
+.parameter-set {
+  height: fit-content;
+  text-align: left;
+  padding: 0.1%;
+  width: 98%;
+  margin-left: none !important;
+}
+.label-container {
+  height: fit-content;
+  width: 100%;
+}
+.key-label {
+  width: 100%;
+  margin: 0 0 0 0.5rem !important;
+  color: nb-theme(table-header-color);
+  font-size: 0.7rem;
+}
+.value-label {
+  width: 100%;
+  color: nb-theme(table-sub-header-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+label {
+  margin: 0;
+}
+.category-icon {
+  padding: 0.5px;
+}

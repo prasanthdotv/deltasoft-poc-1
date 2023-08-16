@@ -1,0 +1,19 @@
+<div class="refresh-container d-flex flex-row">
+  <nb-icon
+    class="refresh-icon d-flex pt-1 align-self-center
+    justify-content-center"
+    icon="refresh"
+    pack="font-awesome"
+    title="Refresh Dashboard"
+    (click)="refreshDashboard()"></nb-icon>
+  <nb-select
+    placeholder="Refresh"
+    (selectedChange)="refreshTimeChanged($event)"
+    [(selected)]="selectedRefreshTime"
+    *ngIf="isAutoRefreshNeeded">
+    <nb-option *ngFor="let timeInterval of refreshTimeInterval; let i=
+      index" [value]="timeInterval.value">
+      {{ timeInterval.label }}
+    </nb-option>
+  </nb-select>
+</div>

@@ -1,0 +1,27 @@
+<nb-card class="mb-0" [ngClass]="multiAxisLineOptions?.card_type === 'large' ?
+  'large-card' : multiAxisLineOptions?.card_type === 'small' ? 'small-card' :
+  'medium-card'" [nbSpinner]="isChartLoading" nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="custom-card-header">
+      <span nbTooltip="{{titleString}}" nbTooltipStatus="basic">{{titleString}}</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body d-flex flex-row">
+    <div class="name-header left-y-axis-name" *ngIf="multiAxisLineChartConfig?.yAxis[0] &&
+      multiAxisLineChartConfig.yAxis[0]?.show &&
+      multiAxisLineOptions.yAxisName[0]">
+      <span>{{ multiAxisLineOptions.yAxisName[0]}}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': multiAxisLineOptions?.yAxisName }" echarts [options]="multiAxisLineChartConfig"
+      (chartInit)="onChartInit($event)" (chartClick)="saveImage()" [autoResize]="true"
+      class="custom-chart multi-axis-line-chart">
+    </div>
+    <div class="name-header right-y-axis-name" *ngIf="multiAxisLineChartConfig?.yAxis[1] &&
+      multiAxisLineChartConfig.yAxis[1]?.show &&
+      multiAxisLineOptions.yAxisName[1]">
+      <span>{{ multiAxisLineOptions.yAxisName[1]}}</span>
+    </div>
+  </nb-card-body>
+</nb-card>

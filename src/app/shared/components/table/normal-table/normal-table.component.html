@@ -1,0 +1,61 @@
+<div class="table-container normal-table-alignment h-100 w-100" [id]="tableInfo?.id" [ngClass]="!isScrollActivated ? 'table-with-bg' : ''">
+  <app-header-block *ngIf="pageTitle" [pageTitle]="pageTitle" [headerIconNeeded]="headerIconNeeded"></app-header-block>
+  <div
+    class="custom-table w-100"
+    id="custom-table"
+    (window:resize)="onResize()"
+    [ngClass]="isScrollActivated ? 'table-scroll' : 'table-no-scroll'"
+  >
+    <div
+      class="normal-table"
+      *ngIf="isTableLoaded"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="primary"
+      nbSpinnerSize="small"
+      [class.h-100]="!(tableData && tableData.length)"
+    >
+      <p-table
+        #dt
+        [value]="tableData"
+        [columns]="cols"
+        [paginator]="isPaginatorNeeded"
+        [scrollable]="true"
+        [scrollHeight]="tableHeight"
+        [rows]="tableRowCount"
+        [resizableColumns]="true"
+      >
+        <ng-template pTemplate="colgroup" let-columns>
+          <colgroup>
+            <col *ngFor="let col of columns" />
+          </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let col of cols" pResizableColumn>
+              {{ col.header }}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tableData>
+          <tr>
+            <td *ngFor="let col of cols; let i = index">
+              {{ tableData[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="cols.length">
+              <div class="align-center">
+                <span *ngIf="!loading; else loadingInfo">No records found</span>
+              </div>
+              <ng-template #loadingInfo>
+                Loading Data...
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

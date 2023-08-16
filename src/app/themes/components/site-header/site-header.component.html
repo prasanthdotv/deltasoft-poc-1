@@ -1,0 +1,58 @@
+<div class="logo-container">
+  <div class="d-flex justify-content-between align-items-center">
+    <div
+      class="d-flex justify-content-between align-items-center
+      left-container"
+    >
+      <!-- <a (click)="toggleCompact()" class="sidebar-toggle" *ngIf="isMainPageLoaded">
+        <nb-icon icon="menu-outline" class="hamburger-menu"></nb-icon>
+      </a> -->
+      <a class="navbar-brand">
+        <img class="logo" alt="logo" />
+      </a>
+      <label class="time-string" *ngIf="currentTime">{{ currentTime }}</label>
+    </div>
+    <!-- <label class="m-0 pt-1 dashboard-title" *ngIf="displayName">{{
+      displayName | uppercase
+    }}</label> -->
+    <div class="right-container">
+      <!-- <span *ngIf="isMainPageLoaded" class="timezone">
+        <nb-icon icon="timezone" class="timezone-icon" pack="custom-icons"></nb-icon
+        >{{ timezoneString }}
+      </span> -->
+      <!-- <nb-actions size="small">
+        <nb-action
+          *ngIf="isMainPageLoaded"
+          class="user-action"
+          nbTooltip="{{ user.id }}"
+          nbTooltipPlacement="bottom"
+        >
+          <nb-user
+            class="float-right"
+            [nbContextMenu]="userMenu"
+            [onlyPicture]="userPictureOnly"
+            nbContextMenuTag="user-context-menu"
+            nbContextMenuTrigger="click"
+            [picture]="user?.picture"
+            nbContextMenuAdjustment="noop"
+            nbContextMenuPlacement="bottom-end"
+            nbContextMenuClass="user-menu"
+          >
+          </nb-user>
+        </nb-action>
+        <nb-action
+          class="float-right theme-selector"
+          icon="settings-2-outline"
+          [nbContextMenu]="settingsMenu"
+          nbContextMenuTrigger="click"
+          nbContextMenuAdjustment="noop"
+          nbContextMenuPlacement="bottom"
+          [badgeText]="badgeText"
+          badgePosition="top right"
+          nbContextMenuTag="settings"
+        >
+        </nb-action>
+      </nb-actions> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<nb-card class="mb-0" [ngClass]="lineChartOptions?.card_type === 'large' ?
+  'large-card' : lineChartOptions?.card_type === 'small' ? 'small-card' :
+  'medium-card'"[nbSpinner]="isChartLoading" nbSpinnerStatus="primary"
+  nbSpinnerSize="small" (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="h-100 custom-card-header pt-1">{{ lineChartOptions?.title }}</div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body">
+    <div class="name-header" *ngIf="lineChartOptions?.yAxisName &&
+      chartOption?.yAxis?.show">
+      <span>{{ lineChartOptions?.yAxisName }}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': lineChartOptions?.yAxisName }" echarts
+      [options]="chartOption" (chartInit)="onChartInit($event)" (chartClick)="saveImage()"
+      [autoResize]="true" class="custom-chart"></div>
+  </nb-card-body>
+</nb-card>

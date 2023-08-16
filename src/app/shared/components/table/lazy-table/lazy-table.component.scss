@@ -1,0 +1,49 @@
+@import '../../../../themes/styles/themes.scss';
+.table-container {
+  .custom-table {
+    height: calc(100% - 8vh);
+    overflow-x: auto;
+    overflow-y: hidden;
+    .hide-table {
+      visibility: hidden;
+    }
+    .show-table {
+      visibility: visible;
+    }
+    background: nb-theme(table-body-color);
+    th {
+      background: nb-theme(custom-table-header-color);
+      color: nb-theme(table-icon-color);
+      border-color: nb-theme(db-table-border-color);
+      padding: 0em 0.857em;
+      height: 5vh;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    td {
+      background: nb-theme(custom-table-body-color);
+      border-color: nb-theme(db-table-border-color);
+      color: nb-theme(db-table-font-color);
+      padding: 0 0.857em;
+      height: 5vh;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    th:focus {
+      outline: unset;
+    }
+    .no-data-block {
+      font-size: 0.8rem;
+      color: nb-theme(no-data-color);
+    }
+    .lazy-table {
+      min-width: 800px;
+      @media only screen and (min-width: 650px) {
+        min-width: unset;
+      }
+    }
+  }
+}

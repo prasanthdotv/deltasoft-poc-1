@@ -1,0 +1,152 @@
+<nb-card class="pop-up-card">
+  <nb-card-header class="card-info-header-bg">
+    <div class="d-flex flex-row pop-up-header align-items-center">
+      <span>Edit Threshold Settings</span>
+      <button type="button" #closebutton class="close" (click)="cancel()" title="Close">&times;</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="h-100 custom-table-body" [nbSpinner]="loading">
+    <div class="info-container">
+      <nb-icon class="info-icon align-middle" icon="alert-circle-outline"></nb-icon>
+      <ng-container *ngIf="isEditing; else applied">
+        <span class="info-text align-middle">
+          Updated threshold settings will be applied
+          <span class="highlight-text">{{ consolidationTimeInfo ? consolidationTimeInfo : ' only after consolidation.' }}</span>
+        </span>
+      </ng-container>
+      <ng-template #applied>
+        <span class="info-text align-middle">Currently applied values.</span>
+      </ng-template>
+    </div>
+    <div class="pop-up-table" id="threshold-settings-table">
+      <form [formGroup]="tableForm">
+        <nb-tabset>
+          <nb-tab *ngFor="let type of thresholdTypeConfig" [tabId]="type.id" [tabTitle]="type.title">
+            <p-table
+              [columns]="cols"
+              [value]="getFormControls.controls"
+              formArrayName="parameters"
+              [rows]="tableRowCount"
+              [totalRecords]="totalRecords"
+              [scrollable]="true"
+              [scrollHeight]="tableHeight"
+            >
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th id="header" *ngFor="let col of columns">
+                    <span nbTooltip="{{ col }}" nbTooltipIcon="info-outline" nbTooltipStatus="basic">{{ col }}</span>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-row let-i="rowIndex">
+                <tr [formGroupName]="i">
+                  <td [class.non-editable]="isEditing && isEditDisabled(type.id, row.value.aggregateType)">
+                    {{ row.value.displayName }}
+                  </td>
+                  <td
+                    pEditableColumn
+                    [pEditableColumnDisabled]="isEditDisabled(type.id, row.value.aggregateType)"
+                    [ngClass]="
+                      !isEditDisabled(type.id, row.value.aggregateType)
+                        ? theme === 'dark'
+                          ? 'editable-dark'
+                          : 'editable-light'
+                        : isEditing
+                        ? 'non-editable'
+                        : ''
+                    "
+                  >
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <input
+                          pInputText
+                          required
+                          type="number"
+                          [formControl]="
+                            row.value.thresholdType === 'normal'
+                              ? getThresholdController(i, type.id, 'min')
+                              : getThresholdController(i, type.id, 'max')
+                          "
+                          #txtInput1
+                          (keydown.escape)="txtInput1.blur()"
+                        />
+                      </ng-template>
+                      <ng-template *ngIf="row.value.thresholdType === 'normal'" pTemplate="output">
+                        {{ row.value.minThreshold[type.id] }} {{ row.value.unit }}
+                      </ng-template>
+                      <ng-template *ngIf="row.value.thresholdType === 'inverse'" pTemplate="output">
+                        {{ row.value.maxThreshold[type.id] }} {{ row.value.unit }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td
+                    pEditableColumn
+                    [pEditableColumnDisabled]="isEditDisabled(type.id, row.value.aggregateType)"
+                    [ngClass]="
+                      !isEditDisabled(type.id, row.value.aggregateType)
+                        ? theme === 'dark'
+                          ? 'editable-dark'
+                          : 'editable-light'
+                        : isEditing
+                        ? 'non-editable'
+                        : ''
+                    "
+                  >
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <input
+                          pInputText
+                          required
+                          type="number"
+                          [formControl]="
+                            row.value.thresholdType === 'normal'
+                              ? getThresholdController(i, type.id, 'max')
+                              : getThresholdController(i, type.id, 'min')
+                          "
+                          #txtInput2
+                          (keydown.escape)="txtInput2.blur()"
+                        />
+                      </ng-template>
+                      <ng-template *ngIf="row.value.thresholdType === 'normal'" pTemplate="output">
+                        {{ row.value.maxThreshold[type.id] }} {{ row.value.unit }}
+                      </ng-template>
+                      <ng-template *ngIf="row.value.thresholdType === 'inverse'" pTemplate="output">
+                        {{ row.value.minThreshold[type.id] }} {{ row.value.unit }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </nb-tab>
+        </nb-tabset>
+      </form>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex flex-row justify-content-end  bottom-bar">
+      <div class="messages align-self-center">
+        <div *ngIf="checkThresholds() && isEditing" class="error-msg" colspan="3">{{ errorMessage }}</div>
+        <div *ngIf="(warningFlag && !errorFlag && isEditing) || editLocked" class="error-msg" colspan="3">{{ warningMessage }}</div>
+      </div>
+      <div class="btn-panel">
+        <ng-container *ngIf="editAllowed && !isEditing">
+          <button nbButton class="btn btn-primary btn-group" [disabled]="editLocked" (click)="onClickEdit()">
+            Edit
+          </button>
+        </ng-container>
+        <ng-container *ngIf="editAllowed && isEditing">
+          <button nbButton class="btn btn-danger btn-group" (click)="onDiscard()">
+            Discard all changes
+          </button>
+          <button nbButton class="btn btn-success btn-group" [disabled]="errorFlag" type="submit" (click)="onSubmit()">
+            Save
+          </button>
+          <button nbButton class="btn btn-secondary btn-group" (click)="onClickCancel()">
+            Cancel
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,17 @@
+<div class="panel-header">
+  <ng-container *ngIf="boxData?.toolTip">
+    <span class="panel-info-header" nbTooltip="{{ boxData?.toolTip }}">
+      <i class="fa"></i>
+      <span class="panel-info-corner-inner"></span>
+    </span>
+  </ng-container>
+  <div class="menu-info" *ngIf="boxData?.status && !isDataEmpty">
+    <div class="d-flex align-items-center justify-content-end">
+      <p-menu #menu [popup]="true" [model]="getMenuItemsForItem(boxData?.label)"
+        appendTo="body" [style.textAlign]="'center'"></p-menu>
+      <span (click)="menu.toggle($event)" class='menu-icon'>
+        <nb-icon icon="ellipsis-v" [ngClass]="boxData?.status === 'normal' ? 'normal-box-header' : 'multi-box-header'" pack="font-awesome"></nb-icon>
+      </span>
+    </div>
+  </div>
+</div>

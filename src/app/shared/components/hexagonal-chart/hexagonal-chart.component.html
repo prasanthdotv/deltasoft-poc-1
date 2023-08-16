@@ -1,0 +1,66 @@
+<nb-card class="w-100 h-100 large-card" [nbSpinner]="isChartLoading" nbSpinnerStatus="primary" nbSpinnerSize="small">
+    <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+    <nb-card-header class="custom-card-heading">
+      <div class="custom-card-header" nbTooltip="{{titleString}}" nbTooltipStatus="basic">
+          {{ titleString }}
+      </div>
+    </nb-card-header>
+    <nb-card-body class="chart-margin">
+      <ng-container *ngIf="isDataAvailable; else noData">
+        <ul id="hexGrid">
+          <ng-container *ngFor="let data of chartData | keyvalue: originalOrder">
+            <li class="hex" *ngIf="data.value.length">
+              <div class="hexIn">
+                <div
+                  class="hexLink"
+                  [ngClass]="data.value[0].indexType === 'good'? 
+                  'good': data.value[0].indexType === 'warning'?
+                  'warning': 'bad'" 
+                >
+                  <div [nbPopover]="popup" nbPopoverTrigger="hint" nbPopoverPlacement="bottom" class="mb-0 hex-content">
+                    {{ data.key }}
+                    <br />
+                    {{ data.value[0].value }}
+                    <span> {{ hexChartOptions?.unit ? hexChartOptions.unit : '' }}</span>
+                  </div>
+                  <ng-template #popup>
+                    <div class="d-flex flex-row justify-content-between pop-up-content">
+                      <div>
+                        Name
+                      </div>
+                      <div>
+                        Value
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex flex-row justify-content-between pop-up-content"
+                      [ngClass]="data.value[0].indexType === 'good'? 
+                      'good-value': data.value[0].indexType === 'warning'?
+                      'warning-value': 'bad-value'" 
+                    >
+                      <div class="health-type popup-text">
+                        <b>{{ data.key }}</b>
+                      </div>
+                      <div class="popup-text">
+                        <b>{{ data.value[0].value }}</b>
+                        <span> {{ hexChartOptions?.unit ? hexChartOptions.unit : '' }}</span>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center pop-up-content">
+                      {{ data.value[0].date_time }}
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </ng-container>
+      <ng-template #noData>
+        <div class="h-100 w-100 d-flex justify-content-center align-items-center" *ngIf="!isChartLoading">
+          <p class="no-data-block">No data</p>
+        </div>
+      </ng-template>
+    </nb-card-body>
+  </nb-card>
+  

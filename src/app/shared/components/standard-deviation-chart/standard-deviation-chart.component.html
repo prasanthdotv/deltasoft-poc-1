@@ -1,0 +1,21 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading"
+  nbSpinnerStatus="primary"
+  nbSpinnerSize="small" (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="h-100 custom-card-header pt-1" nbTooltip="{{titleString}}"
+      nbTooltipStatus="basic">{{titleString}}</div>
+  </nb-card-header>
+  <nb-card-body class="d-flex flex-row custom-card-body">
+    <div class="name-header left-y-axis-name"
+      *ngIf="deviationChartOptions?.yAxisName &&
+      !isDataEmpty">
+      <span>{{ deviationChartOptions?.yAxisName }}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': deviationChartOptions?.yAxisName }"
+      echarts [options]="deviationChartConfig"
+      (chartClick)="saveImage()"
+      (chartInit)="onChartInit($event)"
+      [autoResize]="true" class="custom-chart deviation-chart"></div>
+  </nb-card-body>
+</nb-card>

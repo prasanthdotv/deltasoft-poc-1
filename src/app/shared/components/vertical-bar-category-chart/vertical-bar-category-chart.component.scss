@@ -1,0 +1,14 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+nb-card {
+  border: 1px solid nb-theme(chart-border-color);
+}
+.custom-card-heading {
+  height: 5vh !important;
+}
+.chart-container {
+  padding-left: 2rem;
+}
+.icon-size {
+  font-size: 0.85rem;
+}

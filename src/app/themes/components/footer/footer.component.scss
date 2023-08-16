@@ -1,0 +1,8 @@
+@import 'themes.scss';
+@import 'theme.variables.scss';
+@include nb-install-component {
+  .footer-container {
+    font-size: 0.5rem;
+    line-height: 0.8rem;
+  }
+}

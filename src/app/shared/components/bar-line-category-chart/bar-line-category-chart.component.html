@@ -1,0 +1,43 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading"
+  nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="custom-card-header">
+      <span nbTooltip="{{titleString}}" nbTooltipStatus="basic">
+        {{titleString}}
+      </span>
+      <a *ngIf="!isDataEmpty" nbTooltip="Download" nbTooltipStatus="basic">
+        <nb-icon icon="download" class="download-icon icon-size" (click)="downloadCsv()"></nb-icon>
+      </a>
+      <ng-container *ngIf="selectedGraphType=='bar'">
+        <i class="fa fa-line-chart graph-type-toggle-icon"
+          (click)="graphUpdate('line')" nbTooltip="STB Count"></i>
+      </ng-container>
+      <ng-container *ngIf="selectedGraphType=='line'">
+        <i class="fa fa-bar-chart graph-type-toggle-icon"
+          (click)="graphUpdate('bar')" nbTooltip="STB
+          Percentage"></i>
+      </ng-container>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body d-flex flex-row">
+    <div class="name-header left-y-axis-name"
+      *ngIf="barLineChartOptions.yAxisName && !isDataEmpty">
+      <span>{{ barLineChartOptions.defaultGraphType ==
+        'both'?barLineChartOptions.yAxisName.bar:barLineChartOptions.yAxisName[selectedGraphType]
+        }}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': barLineChartOptions?.yAxisName }"
+      echarts [options]="barLineChartConfig"
+      (chartInit)="onChartInit($event)"
+      (chartClick)="saveImage()"
+      [autoResize]="true"
+      class="custom-chart bar-line-chart">
+    </div>
+    <div class="name-header right-y-axis-name"
+      *ngIf="barLineChartOptions.defaultGraphType == 'both' && !isDataEmpty">
+      <span>{{ barLineChartOptions.yAxisName.line }}</span>
+    </div>
+  </nb-card-body>
+</nb-card>

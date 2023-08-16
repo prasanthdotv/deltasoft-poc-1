@@ -1,0 +1,9 @@
+@import '../../../../themes/styles/themes.scss';
+.title-block {
+  font-size: 0.8rem;
+  height: 6vh;
+  background-color: nb-theme(card-header-color);
+  .icon-size {
+    font-size: 1rem;
+  }
+}

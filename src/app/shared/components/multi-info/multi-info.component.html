@@ -1,0 +1,36 @@
+<div class="h-100 w-100 container" [nbSpinner]="isCardLoading" nbSpinnerStatus="primary" nbSpinnerSize="small">
+    <ng-container *ngIf="isDataAvailable else noData">
+        <div *ngFor="let category of cardData">
+            <div class="d-flex flex-row w-100">
+                <nb-icon class="category-icon" icon="{{category.icon}}"></nb-icon>
+                <label class='header'>
+                    {{category.title}}
+                </label>
+            </div>
+            <nb-card class="mb-0" [ngClass]="multiInfoOptions?.card_type === 'large' ?
+        'large-card'
+        :
+        multiInfoOptions?.card_type === 'small' ? 'small-card' : 'medium-card'">
+                <nb-card-body class="custom-card-body">
+                    <div class="h-100 parameter-set row">
+                        <ng-container *ngFor="let item of category.data|
+              keyvalue:originalOrder; let i= index">
+                            <div [ngSwitch]="item.key" class="col-4 label-container" nbTooltip="{{
+                  item.key }}: {{item.value}}" nbTooltipPlacement="start">
+                                <ng-container *ngSwitchDefault>
+                                    <label class="key-label">{{item.key}}</label>
+                                    <label class="value-label">{{item.value}}</label>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </ng-container>
+    <ng-template #noData>
+        <div *ngIf="!isCardLoading" class="h-100 w-100 no-data-block">
+            <span class="no-data-label">No Data</span>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,21 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading"
+  nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="custom-card-header" 
+    nbTooltip="{{titleString}}" nbTooltipStatus="basic">{{titleString}}</div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body">
+    <div class="name-header" *ngIf="barChartOptions?.yAxisName &&
+      barChartConfig?.yAxis?.show">
+      <span>{{ barChartOptions?.yAxisName }}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': barChartOptions?.yAxisName }" echarts
+      [options]="barChartConfig"
+      (chartInit)="onChartInit($event)"
+      (chartClick)="saveImage()"
+      [autoResize]="true"
+      class="custom-chart"></div>
+  </nb-card-body>
+</nb-card>

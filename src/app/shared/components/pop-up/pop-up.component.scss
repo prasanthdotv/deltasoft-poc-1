@@ -1,0 +1,85 @@
+@import '../../../themes/styles/themes.scss';
+.pop-up-header {
+  padding: 1vh 1vw !important;
+  justify-content: space-between;
+  background: nb-theme(pop-up-header-color);
+  height: 5vh;
+  span {
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    color: nb-theme(pop-up-header-text-color);
+  }
+  button {
+    color: nb-theme(pop-up-header-text-color);
+  }
+}
+.card-info-no-value {
+  font-size: 0.85rem !important;
+}
+.pop-up-card {
+  height: 100% !important;
+  width: 100% !important;
+}
+.custom-table-body {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: unset !important;
+}
+.refresh-icon {
+  font-size: 1rem !important;
+  cursor: pointer;
+  color: nb-theme(refresh-item-color);
+}
+.refresh-label {
+  font-size: 0.8rem !important;
+  color: nb-theme(refresh-item-color);
+}
+.pop-up-table {
+  overflow-x: scroll !important;
+  min-width: 650px;
+  height: fit-content;
+  @media only screen and (min-width: 650px) {
+    min-width: unset;
+  }
+  background: nb-theme(table-body-color);
+  td {
+    font-size: 0.75rem;
+    padding: 0 1vw !important;
+    height: 5vh !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: nb-theme(custom-table-body-color);
+    border-color: nb-theme(db-table-border-color);
+    color: nb-theme(db-table-font-color);
+  }
+  th {
+    font-size: 0.75rem;
+    padding: 0 0.1vw 0 1vw !important;
+    height: 4.5vh !important;
+    background: nb-theme(pop-up-table-header-color);
+    color: nb-theme(pop-up-table-header-text-color);
+    border-color: nb-theme(db-table-border-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+a {
+  color: nb-theme(db-table-font-color);
+  text-decoration: underline;
+}
+a:hover {
+  cursor: pointer;
+}
+.csvDownload {
+  color: nb-theme(db-table-font-color) !important;
+  outline: none !important;
+  opacity: unset !important;
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+}
+.download-icon {
+  vertical-align: bottom;
+}

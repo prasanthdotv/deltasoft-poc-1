@@ -1,0 +1,17 @@
+<div *ngIf="boxConfig?.title" class="box-header d-flex justify-content-center
+  align-items-center" nbTooltip="{{titleString}}" nbTooltipStatus="basic">{{titleString}}</div>
+<input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+<div class="row no-gutters box-row">
+  <div *ngIf="boxConfig?.type?.leftBox?.type" class="col left-box">
+    <app-box *ngIf="leftBox" [boxProperty]="leftBox"
+      [isBoxLoading]="isBoxLoading" [isDataEmpty]="isDataEmpty.left"></app-box>
+  </div>
+  <div *ngIf="boxConfig?.type?.middleBox?.type" class="col">
+    <app-box *ngIf="middleBox" [boxProperty]="middleBox"
+      [isBoxLoading]="isBoxLoading" [isDataEmpty]="isDataEmpty.middle"></app-box>
+  </div>
+  <div *ngIf="boxConfig?.type?.rightBox?.type" class="col right-box">
+    <app-box *ngIf="rightBox" [boxProperty]="rightBox"
+      [isBoxLoading]="isBoxLoading" [isDataEmpty]="isDataEmpty.right"></app-box>
+  </div>
+</div>

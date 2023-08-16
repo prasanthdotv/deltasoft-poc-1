@@ -1,0 +1,55 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+@include nb-install-component {
+  .custom-box {
+    width: 100%;
+    height: 100%;
+    .custom-card-body {
+      padding: unset !important;
+      .custom-card-header {
+        background: nb-theme(card-header-color);
+        color: nb-theme(default-box-text-color);
+        height: 5vh !important;
+        font-weight: unset !important;
+        font-size: 0.8rem !important;
+      }
+      .box-content {
+        font-size: 1.4rem;
+      }
+    }
+    .good-box {
+      background: nb-theme(good-box-color);
+    }
+    .bad-box {
+      background: nb-theme(bad-box-color);
+    }
+    .default-box {
+      background: nb-theme(default-box-color);
+      .box-content {
+        color: nb-theme(default-box-text-color);
+        font-size: 2rem !important;
+      }
+    }
+    .warning-box {
+      background: nb-theme(warning-box-color);
+    }
+  }
+  .large-box {
+    height: 100% !important;
+    .box-content {
+      font-size: 2rem !important;
+    }
+  }
+  .medium-box {
+    height: 100%;
+    .box-content {
+      font-size: 2rem !important;
+    }
+  }
+  .default-box {
+    .normal-box {
+      color: nb-theme(default-box-text-normal-color) !important;
+    }
+  }
+}

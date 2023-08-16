@@ -1,0 +1,16 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+@include nb-install-component {
+  .box-header {
+    height: 24.5%;
+    background: nb-theme(card-header-color);
+    margin-bottom: 0.45rem;
+    color: nb-theme(default-box-text-color);
+    font-size: 0.8rem;
+  }
+}

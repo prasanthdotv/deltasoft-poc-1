@@ -1,0 +1,74 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+#user-agreement {
+  @media only screen and (min-width: 600px) {
+    width: 85% !important;
+    margin-left: 8%;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 80% !important;
+    margin-left: 10%;
+    margin-top: 5%;
+  }
+  height: 80% !important;
+  margin-top: 5%;
+}
+
+#confirmation {
+  height: 25% !important;
+  width: 40% !important;
+  margin-top: 20%;
+  margin-left: 30%;
+}
+
+.pop-up-header {
+  padding: 1vh 1vw !important;
+  justify-content: space-between;
+  background: nb-theme(pop-up-header-color);
+  height: 5vh;
+  span {
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    color: nb-theme(pop-up-header-text-color);
+  }
+  button {
+    color: nb-theme(pop-up-header-text-color);
+  }
+}
+
+.pop-up-card {
+  ::-webkit-scrollbar {
+    width: 5px !important;
+  }
+}
+
+[nbButton]:focus {
+  outline: none;
+  box-shadow: none;
+}
+[nbButton]:disabled {
+  cursor: not-allowed;
+}
+
+.info-container {
+  margin: 1%;
+  overflow-y: scroll;
+  text-align: justify;
+}
+
+.info-text {
+  color: nb-theme(db-table-font-color);
+  font-size: 0.75rem;
+  margin-right: 1% !important;
+}
+
+.btn-group {
+  margin-right: 1%;
+  font-size: 0.75rem;
+}
+
+.bottom-bar {
+  justify-content: center;
+}

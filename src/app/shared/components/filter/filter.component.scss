@@ -1,0 +1,34 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+:host {
+    width: 100%;
+}
+.filter-block {
+  display: flex;
+  flex-direction: column;
+  @media only screen and (min-width: 900px) {
+    flex-direction: row;
+  }
+  .filter-container {
+    margin-top: 0.5vh;
+    width: fit-content;
+    font-weight: 500;
+    font-size: 0.8rem;
+    background-color: nb-theme(card-color);
+    display: flex;
+    align-items: center;
+    border: 1px solid nb-theme(table-header-bg-color);
+    border-radius: 3px 0 0 3px;
+    height: 28px;
+    label {
+      color: nb-theme(filter-label-color);
+      margin-bottom: 0 !important;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      width: fit-content;
+    }
+    white-space: nowrap;
+    margin-right: 2%;
+  }
+}

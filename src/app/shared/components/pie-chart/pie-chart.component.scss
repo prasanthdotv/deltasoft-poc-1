@@ -1,0 +1,27 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+.pie-medium-card {
+  height: 100%;
+  border: 1px solid nb-theme(chart-border-color);
+}
+.pie-small-card {
+  height: calc(100% - 8vh);
+  border: 1px solid nb-theme(chart-border-color);
+}
+.header-block {
+  height: 7vh;
+  margin-bottom: 1vh;
+  font-size: 1.05rem;
+  div {
+    text-transform: uppercase !important;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+.icon-size {
+  font-size: 1rem;
+  vertical-align: middle;
+}

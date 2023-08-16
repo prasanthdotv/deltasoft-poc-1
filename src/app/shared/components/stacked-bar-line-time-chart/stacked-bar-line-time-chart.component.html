@@ -1,0 +1,41 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading"
+  nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="custom-card-header">
+      <span nbTooltip="{{titleString}}"
+      nbTooltipStatus="basic">
+        {{titleString}}
+      </span>
+      <ng-container *ngIf="selectedGraphType=='bar'">
+        <i class="fa fa-line-chart graph-type-toggle-icon"
+          (click)="graphUpdate('line')" nbTooltip="STB Count"></i>
+      </ng-container>
+      <ng-container *ngIf="selectedGraphType=='line'">
+        <i class="fa fa-bar-chart graph-type-toggle-icon"
+          (click)="graphUpdate('bar')" nbTooltip="STB
+          Percentage"></i>
+      </ng-container>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body d-flex flex-row">
+    <div class="name-header left-y-axis-name"
+      *ngIf="stackedBarLineChartOptions.yAxisName && !isDataEmpty">
+      <span>{{ stackedBarLineChartOptions.defaultGraphType ==
+        'both'?stackedBarLineChartOptions.yAxisName.bar:stackedBarLineChartOptions.yAxisName[selectedGraphType]
+        }}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': stackedBarLineChartOptions?.yAxisName }"
+      echarts [options]="stackedBarLineChartConfig"
+      (chartInit)="onChartInit($event)"
+      (chartClick)="saveImage()"
+      [autoResize]="true"
+      class="custom-chart stacked-bar-line-chart">
+    </div>
+    <div class="name-header right-y-axis-name"
+      *ngIf="stackedBarLineChartOptions.defaultGraphType == 'both' && !isDataEmpty">
+      <span>{{ stackedBarLineChartOptions.yAxisName.line }}</span>
+    </div>
+  </nb-card-body>
+</nb-card>

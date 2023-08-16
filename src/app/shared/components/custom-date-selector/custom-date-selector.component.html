@@ -1,0 +1,31 @@
+<div class="d-flex flex-row">
+  <p-calendar #rangePicker
+    [(ngModel)]="defaultDate"
+    [showTime]="showTimeField"
+    hourFormat="24"
+    selectionMode="range"
+    dateFormat="dd/mm/yy"
+    (onSelect)="validateDateRange()"
+    (onShow)="setMinutesToZero()"
+    [readonlyInput]="true"
+    placeholder="Select a date range"
+    [maxDate]="maxDate"
+    [minDate]="minDate">
+    <p-footer>
+      <div class="d-flex flex-column align-items-center
+        justify-content-center">
+        <button nbButton
+          class="btn btn-primary"
+          status="primary"
+          [disabled]="invalidDateRange"
+          (click)="dateTimeRangeChanged($event)">Set</button>
+        <span *ngIf="invalidDateRange" class="calendar-error">Invalid date
+          range!</span>
+      </div>
+    </p-footer>
+  </p-calendar>
+  <nb-icon class="calender-icon d-flex pt-1 align-self-center
+    justify-content-center" icon="calendar"
+    (click)="toggleDatePicker()"
+    pack="font-awesome"></nb-icon>
+</div>

@@ -1,0 +1,21 @@
+<nb-card class="pop-up-card" [id]="id">
+  <nb-card-header class="card-info-header-bg">
+    <div class="d-flex flex-row pop-up-header align-items-center">
+      <span>{{ header }}</span>
+      <button type="button" #closebutton class="close" (click)="cancel(false)" title="Close">&times;</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="d-flex flex-column h-100 w-100 justify-content-between">
+    <div class="d-flex info-container ">
+      <span class="info-text" [innerHTML]="content"></span>
+    </div>
+    <div class="d-flex bottom-bar">
+      <button nbButton class="btn btn-success btn-group" (click)="cancel(true)">
+        {{ okBtnTxt ? okBtnTxt : 'Confirm' }}
+      </button>
+      <button nbButton class="btn btn-basic btn-group" (click)="cancel(false)">
+        Cancel
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

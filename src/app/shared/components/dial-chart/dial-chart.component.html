@@ -1,0 +1,23 @@
+<div class="header-block d-flex w-100 align-items-center justify-content-center" *ngIf="dialChartOptions?.header">
+  <div class="m-0">
+    <span nbTooltip="{{dialChartOptions.header}}" nbTooltipStatus="basic">
+      {{dialChartOptions.header}}
+    </span>
+  </div>
+</div>
+<nb-card class="dial-medium-card mb-0" [nbSpinner]="isChartLoading" nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="custom-card-header" nbTooltip="{{titleString}}" nbTooltipStatus="basic">
+      {{ titleString }}</div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body">
+    <div echarts [options]="chartOption"
+    (chartInit)="onChartInit($event)"
+    (chartClick)="saveImage()"
+    class="custom-chart" 
+    [autoResize]="true">
+    </div>
+  </nb-card-body>
+</nb-card>

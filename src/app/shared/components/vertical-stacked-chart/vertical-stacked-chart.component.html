@@ -1,0 +1,21 @@
+<nb-card class="w-100 h-100" [nbSpinner]="isChartLoading"
+  nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="h-100 custom-card-header pt-1" nbTooltip="{{titleString}}"
+      nbTooltipStatus="basic">{{ titleString }}
+    </div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body">
+    <div class="name-header ml-2" *ngIf="verticalStackOptions?.yAxisName &&
+      verticalStackedChartConfig?.yAxis?.show">
+      <span>{{ verticalStackOptions?.yAxisName }}</span>
+    </div>
+    <div echarts [options]="verticalStackedChartConfig"
+      (chartInit)="onChartInit($event)"
+      (chartClick)="saveImage()"
+      class="custom-chart" style="height: 100%"
+      [ngClass]="verticalStackOptions?.yAxisName?'custom-axis-chart':''"></div>
+  </nb-card-body>
+</nb-card>

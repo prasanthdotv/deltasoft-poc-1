@@ -1,0 +1,26 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading"
+  nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header class="custom-card-heading">
+    <div class="custom-card-header">
+      <span nbTooltip="{{titleString}}" nbTooltipStatus="basic">
+        {{titleString}}
+      </span>
+      <a *ngIf="!isDataEmpty" nbTooltip="Download" nbTooltipStatus="basic">
+        <nb-icon icon="download" class="download-icon icon-size" (click)="downloadCsv()"></nb-icon>
+      </a>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="custom-card-body">
+    <div class="name-header" *ngIf="verticalBarChartOptions?.yAxisName && !isDataEmpty">
+      <span>{{ verticalBarChartOptions?.yAxisName }}</span>
+    </div>
+    <div [ngClass]="{ 'chart-container': verticalBarChartOptions?.yAxisName }" echarts
+      [options]="verticalBarChartConfig"
+      (chartInit)="onChartInit($event)" 
+      (chartClick)="saveImage()"
+      [autoResize]="true"
+      class="custom-chart vertical-bar-chart"></div>
+  </nb-card-body>
+</nb-card>

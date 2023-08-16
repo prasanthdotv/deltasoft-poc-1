@@ -1,0 +1,251 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+nb-card {
+  padding: 0.5rem;
+}
+
+nb-card-body {
+  padding: 0 !important;
+}
+
+.medium-card {
+  border: hidden !important;
+}
+
+.custom-card-body {
+  background: nb-theme(info-bg);
+  color: nb-theme(card-text-color);
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  border: hidden !important;
+}
+
+.header-container {
+  padding-top: 3%;
+  margin-bottom: 0.5rem;
+}
+
+.header {
+  background: nb-theme(card-color);
+  color: nb-theme(card-text-color);
+  font-size: 1rem;
+  margin-left: 2%;
+}
+
+.no-data-block {
+  text-align: center;
+}
+
+.no-data-label {
+  font-size: 0.7rem;
+  color: nb-theme(no-data-color);
+}
+
+.inner-container {
+  padding: 1%;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+
+.slider {
+  height: 70%;
+  display: grid;
+  align-items: center;
+  position: relative;
+}
+
+div.slider:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 50%;
+  width: 100%;
+  box-sizing: border-box;
+  border-left: 2px solid #e0e0e0;
+  border-right: 2px solid #e0e0e0;
+}
+
+.slider-container {
+  padding-left: 24.29% !important;
+  width: 100%;
+  height: 10%;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: nb-theme(table-sub-header-color);
+  #selected-slider-date {
+    color: nb-theme(card-text-color);
+  }
+  height: 30%;
+  align-items: center !important;
+}
+
+.container-head {
+  height: 10%;
+  .row {
+    margin: 0;
+    height: 100%;
+  }
+}
+
+.date-time-header {
+  border: 1px solid nb-theme(device-details-table-border);
+  border-bottom: none;
+  margin-left: 24.3%;
+  width: 100%;
+}
+
+.nav-icons {
+  display: flex;
+  width: 2.775%;
+  button {
+    width: 100%;
+    padding: 0px;
+    opacity: 1;
+    outline: none;
+  }
+  img {
+    width: 100%;
+  }
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
+.button-left {
+  outline: none;
+  border: none !important;
+  background: nb-theme(nav-btn-bg) 0% 0% no-repeat padding-box;
+  box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.1);
+  img {
+    content: url($url-prev);
+    float: left;
+  }
+}
+
+.button-right {
+  outline: none;
+  border: none !important;
+  background: nb-theme(nav-btn-bg) 0% 0% no-repeat padding-box;
+  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.1);
+  img {
+    content: url($url-next);
+    float: left;
+  }
+}
+
+.time-value {
+  padding-top: 0.25%;
+  width: 14%;
+  font-size: 0.75rem;
+  text-align: center;
+  letter-spacing: 0;
+  color: nb-theme(card-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  font-weight: bold;
+  background: nb-theme(device-details-table-header);
+  #date,
+  #time {
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.legend {
+  height: 80%;
+  overflow-y: auto;
+}
+
+.table-data {
+  height: fit-content;
+  border: 1px solid nb-theme(device-details-table-border);
+  border-bottom: none;
+  .primary {
+    margin: 0;
+  }
+}
+
+.group-header {
+  padding-left: 0.612%;
+  width: 12%;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: nb-theme(card-text-color);
+  opacity: 1;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 1px solid nb-theme(device-details-table-border);
+  background-color: nb-theme(device-details-param-bg);
+}
+
+.table-content {
+  width: 88%;
+  .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+}
+
+.table-value {
+  border: 1px solid nb-theme(device-details-table-border);
+  border-top: none;
+  border-right: none;
+}
+
+.param-name {
+  width: 12.861%;
+  padding-left: 0.5%;
+  font-size: 0.8rem;
+  text-align: left;
+  letter-spacing: 0;
+  color: nb-theme(card-text-color);
+  opacity: 1;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: nb-theme(device-details-param-bg);
+}
+
+.parameter-name {
+  width: 15.5%;
+}
+
+.data-value {
+  width: 8.3%;
+  font-size: 0.7rem;
+  text-align: center;
+  letter-spacing: 0;
+  color: nb-theme(card-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  border-left: 1px solid nb-theme(device-details-table-border);
+  word-break: break-all;
+  padding: 0.15%;
+}
+
+.link-button {
+  button {
+    color: nb-theme(text-link);
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  button:hover {
+    color: nb-theme(text-link);
+    text-decoration: underline;
+  }
+}

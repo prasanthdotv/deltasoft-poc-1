@@ -1,0 +1,17 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <!-- Insert header here -->
+    <ng-content select="app-site-header"></ng-content>
+  </nb-layout-header>
+  <nb-sidebar *ngIf="isSidebarNeeded" class="menu-sidebar" tag="menu-sidebar" responsive="false" state="compacted"
+    fixed="true">
+    <ng-content select="app-sidebar-menu"></ng-content>
+  </nb-sidebar>
+  <nb-layout-column>
+    <ng-content></ng-content>
+  </nb-layout-column>
+  <nb-layout-footer fixed>
+    <!-- Insert footer here -->
+    <ng-content select="app-footer"></ng-content>
+  </nb-layout-footer>
+</nb-layout>

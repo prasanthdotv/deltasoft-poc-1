@@ -1,0 +1,27 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+@include nb-install-component {
+  .basic-title {
+    width: 100%;
+    height: 100%;
+    .custom-card-body {
+      padding: unset !important;
+      .custom-card-header {
+        background: nb-theme(card-header-color);
+        color: nb-theme(default-box-text-color);
+        height: 5vh !important;
+        font-weight: unset !important;
+        font-size: 0.8rem !important;
+      }
+    }
+    .title-card {
+      background: nb-theme(card-header-color);
+    }
+  }
+  .title-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

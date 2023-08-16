@@ -1,0 +1,51 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+.custom-nebular-card {
+    border: 1px solid nb-theme(chart-border-color);
+    .overview-info {
+        height: 3.5vh;
+        font-size: 0.8rem !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .custom-card-header {
+        background: nb-theme(card-header-color);
+    }
+    .overview-body {
+        height: calc(100% - 3.5vh);
+        padding: 1vh 1vw !important;
+        .param-item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            .sub-header {
+                height: 3.5vh;
+                font-size: 0.7rem;
+                .redirect-link:hover {
+                    cursor: pointer;
+                    color: nb-theme(text-link);
+                    text-decoration: underline;   
+                }
+            }
+            .param-body {
+                height: calc(100% - 3.5vh);
+                font-size: 1rem;
+                color: nb-theme(text-color-1)
+            }
+        }
+    }
+    .align-to-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.anomaly-box {
+    cursor: pointer;
+    background: nb-theme(bad-box-color-2);
+}
+.good-box {
+    background: nb-theme(good-box-color);
+}

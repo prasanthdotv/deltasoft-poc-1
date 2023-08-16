@@ -1,0 +1,100 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+
+@include nb-install-component {
+  .panel-header {
+    z-index: 9;
+    position: absolute;
+    width: 100%;
+    height: 1.5rem;
+  }
+  .panel-info-header {
+    color: #8e8e8e;
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    z-index: 22;
+    top: 0;
+    .fa {
+      position: relative;
+      top: -2px;
+      left: 4px;
+      font-size: 75%;
+      z-index: 3;
+    }
+  }
+  .panel-info-header .fa:before {
+    content: '\f129';
+  }
+  .panel-info-header .panel-info-corner-inner {
+    border-left: 1.5rem solid nb-theme(info-header-bg);
+    border-right: none;
+    border-bottom: 1.5rem solid rgba(0, 0, 0, 0);
+  }
+  .panel-menu {
+    top: 25px;
+    left: -100px;
+  }
+  .dropdown-menu--menu,
+  .dropdown-menu--navbar,
+  .dropdown-menu--sidemenu {
+    background: #161719;
+    -webkit-box-shadow: 5px 5px 20px -5px #000;
+    box-shadow: 5px 5px 20px -5px #000;
+    margin-top: 0;
+    border: none;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 140px;
+    margin: 2px 0 0;
+    list-style: none;
+    background-color: #262628;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: left;
+  }
+  .panel-info-corner-inner {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .box-info {
+    z-index: 9;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: nb-theme(card-header-color);
+    margin-bottom: 0.45rem;
+    color: nb-theme(default-box-text-color);
+    font-size: 0.8rem;
+  }
+  .menu-info {
+    z-index: 9;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0.45rem;
+    color: nb-theme(default-box-text-color);
+    font-size: 0.8rem;
+  }
+}
+.menu-icon {
+  padding: 0.5em;
+  margin: -0.5em;
+}
+.multi-box-header {
+ color: nb-theme(multi-ellipsis-color);
+}
+.normal-box-header {
+ color: nb-theme(normal-ellipsis-color);
+}

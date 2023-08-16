@@ -1,0 +1,18 @@
+<nb-card [ngClass]="pieChartOptions?.header ? 'pie-small-card':
+  'pie-medium-card'" [nbSpinner]="isChartLoading" nbSpinnerStatus="primary" nbSpinnerSize="small"
+  (window:resize)="onReSize()">
+  <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+  <nb-card-header *ngIf="pieChartOptions?.title" class="custom-card-heading">
+    <div class="custom-card-header">
+      <span nbTooltip="{{titleString}}" nbTooltipStatus="basic">{{ titleString }}</span>
+      <a *ngIf="pieChartOptions.csvEndPoint && !isDataEmpty" nbTooltip="Download" nbTooltipStatus="basic">
+        <nb-icon icon="download" class="download-icon icon-size" (click)="downloadCsv()"></nb-icon>
+      </a>
+    </div>
+  </nb-card-header>
+  <nb-card-body [ngClass]="pieChartOptions?.title ? 'h-100' :
+    'custom-card-body'">
+    <div echarts [options]="chartOption" (chartClick)="saveImage()" (chartInit)="onChartInit($event)"
+      class="custom-chart" [autoResize]="true"></div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,144 @@
+@import '../../../themes/styles/themes.scss';
+@import '../../../themes/styles/theme.variables.scss';
+.pop-up-header {
+  padding: 0.875rem 0.875rem !important;
+  justify-content: space-between;
+  background: nb-theme(pop-up-header-color);
+  height: 2.2rem;
+  span {
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    color: nb-theme(pop-up-header-text-color);
+  }
+  button {
+    color: nb-theme(pop-up-header-text-color);
+  }
+}
+.card-info-no-value {
+  font-size: 0.85rem !important;
+}
+.pop-up-card {
+  height: 75vh !important;
+  width: 70vw !important;
+  margin-top: 7vh;
+  margin-left: 5vw;
+}
+.custom-table-body {
+  height: calc(75vh - 6.575rem);
+  padding: unset !important;
+}
+.refresh-icon {
+  font-size: 1rem !important;
+  cursor: pointer;
+  color: nb-theme(refresh-item-color);
+}
+.refresh-label {
+  font-size: 0.8rem !important;
+  color: nb-theme(refresh-item-color);
+}
+.pop-up-table {
+  height: calc(71.5vh - 6.575rem);
+  min-width: 650px;
+  @media only screen and (min-width: 650px) {
+    min-width: unset;
+  }
+  background: nb-theme(table-body-color);
+  td {
+    font-size: 0.75rem;
+    padding: 0 1vw !important;
+    height: 5vh !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: nb-theme(custom-table-body-color);
+    border-color: nb-theme(db-table-border-color);
+    color: nb-theme(db-table-font-color);
+    :focus {
+      box-shadow: none;
+    }
+  }
+  th {
+    font-size: 0.75rem;
+    padding: 0 1vw !important;
+    height: 4.5vh !important;
+    background: nb-theme(editable-table-header);
+    color: nb-theme(pop-up-table-header-text-color);
+    border-color: nb-theme(db-table-border-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.error-msg {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  height: 3vh !important;
+  background: nb-theme(custom-table-body-color);
+  border-color: nb-theme(db-table-border-color);
+  color: nb-theme(error-block-color);
+}
+
+[nbButton]:focus {
+  outline: none;
+  box-shadow: none;
+}
+[nbButton]:disabled {
+  cursor: not-allowed;
+}
+
+.editable-light {
+  cursor: url($edit-cursor-light-theme), pointer;
+}
+
+.editable-dark {
+  cursor: url($edit-cursor-dark-theme), pointer;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.info-container {
+  height: 3vh;
+  padding: 0.5vh;
+}
+.info-icon {
+  margin-left: 1%;
+  font-size: 1rem;
+}
+
+.info-text {
+  color: nb-theme(db-table-font-color);
+  font-size: 0.75rem;
+  margin-left: 0.25%;
+}
+.btn-panel {
+  min-width: 18rem;
+  text-align: end;
+}
+.btn-group {
+  margin-right: 1%;
+  font-size: 0.75rem;
+}
+
+.bottom-bar {
+  margin: 1% 2% 1% 2%;
+}
+.highlight-text {
+  font-weight: 800;
+}
+
+nb-card-footer {
+  height: 3.5rem;
+  padding: 0;
+}
+
+td.non-editable {
+  background: nb-theme(edit-disabled-bg-color) !important;
+  color: nb-theme(edit-disabled-text-color) !important;
+}

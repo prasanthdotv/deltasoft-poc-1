@@ -1,0 +1,21 @@
+<nb-card class="h-100 w-100 m-0 custom-nebular-card" [nbSpinner]="loading" nbSpinnerStatus="primary"
+    nbSpinnerSize="small">
+    <input *ngIf="inputId" type="text" class="input-data" [id]="inputId" />
+    <nb-card-header class="overview-info custom-card-header">{{paramOptions?.title}}</nb-card-header>
+    <nb-card-body class="row overview-body">
+        <ng-container *ngIf="paramList?.length; else noData"></ng-container>
+        <div class="col" *ngFor="let param of paramList">
+            <div class="param-item">
+                <div class="w-100 align-to-center sub-header custom-card-header">
+                    <span class="redirect-link" (click)="reDirectToDashboard(param.url)">{{param?.title}}</span></div>
+                <div class="w-100 align-to-center param-body" [ngClass]="param.label ? 'anomaly-box': 'good-box'"
+                    (click)="openDrillDown(param.parameter, param.label)">
+                    <span>{{param?.label}}</span>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+    <ng-template #noData>
+        <div *ngIf="!loading" class="h-100 w-100 align-to-center">{{paramOptions?.noDataSummary}}</div>
+    </ng-template>
+</nb-card>

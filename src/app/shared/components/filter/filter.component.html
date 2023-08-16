@@ -1,0 +1,17 @@
+<div class="filter-block custom-filter-style">
+    <div class="filter-container" *ngFor="let filter of filterConfig">
+        <label>{{ filter.label }}</label>
+        <ng-container *ngIf="filter?.multiSelect ; else normalDropdown">
+            <p-multiSelect [options]="dropdowns[filter.name]" [(ngModel)]="filterModel[filter.name]" optionValue="value"
+                optionLabel="label" [filter]="true" filterBy="label" (onChange)="filterChange($event, filter, true)"
+                maxSelectedLabels="1" (onPanelHide)="onPanelHide(filter.name)"
+                selectedItemsLabel="{selectedFilters[filterName].length} {{filter?.label}}s selected">
+            </p-multiSelect>
+        </ng-container>
+        <ng-template #normalDropdown>
+            <p-dropdown [options]="dropdowns[filter.name]" [(ngModel)]="filterModel[filter.name]" optionValue="value"
+                optionLabel="label" [showClear]="false" [filter]="true" filterBy="label"
+                (onChange)="filterChange($event, filter, false)"></p-dropdown>
+        </ng-template>
+    </div>
+</div>
