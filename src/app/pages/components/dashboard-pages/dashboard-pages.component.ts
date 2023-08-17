@@ -13,8 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard-pages.component.html',
   styleUrls: ['./dashboard-pages.component.scss']
 })
-export class DashboardPagesComponent extends BaseComponent
-  implements OnInit, AfterViewChecked, OnDestroy {
+export class DashboardPagesComponent extends BaseComponent implements OnInit, AfterViewChecked, OnDestroy {
   backgroundRefreshPages: any[];
   filterSubscription: Subscription;
   showFilter = false;
@@ -37,8 +36,8 @@ export class DashboardPagesComponent extends BaseComponent
   async ngOnInit() {
     this.initProperties();
     this.createPageOnRouteChange();
-    this.initFilterPanel();
-    this.onFilterToggle();
+    // this.initFilterPanel();
+    // this.onFilterToggle();
   }
 
   onFilterToggle() {

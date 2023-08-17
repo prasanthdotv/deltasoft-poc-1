@@ -1,21 +1,11 @@
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="default"
-  color="#1968b3"
-  type="ball-rotate"
-  [fullScreen]="true"
->
-</ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#1968b3" type="ball-rotate" [fullScreen]="true"> </ngx-spinner>
 <div
   *ngIf="dashBoardPagesContent"
   class="container-fluid h-100"
   [ngClass]="showFilter || isFilterPinned ? 'panel-block' : 'no-panel-block'"
 >
   <ng-container>
-    <div
-      class="row no-gutters dropdown-panels"
-      [ngClass]="showFilter || isFilterPinned ? 'show-panel' : 'hide-panel'"
-    >
+    <div class="row no-gutters dropdown-panels" [ngClass]="showFilter || isFilterPinned ? 'show-panel' : 'hide-panel'">
       <div
         class="d-flex flex-row col-6 justify-content-start
         align-items-center
@@ -41,24 +31,13 @@
             justify-content-center"
             *ngIf="pageContent.timeSelector"
           >
-            <nb-select
-              placeholder="Time Range"
-              (selectedChange)="timeRangeChanged($event)"
-              [(selected)]="selectedTimeRange"
-            >
-              <nb-option
-                *ngFor="let timeRange of customTimeRange; let i = index"
-                [value]="timeRange.value"
-              >
+            <nb-select placeholder="Time Range" (selectedChange)="timeRangeChanged($event)" [(selected)]="selectedTimeRange">
+              <nb-option *ngFor="let timeRange of customTimeRange; let i = index" [value]="timeRange.value">
                 {{ timeRange.label }}
               </nb-option>
             </nb-select>
           </div>
-          <refresh
-            *ngIf="pageContent.autoRefresh"
-            [isAutoRefreshNeeded]="pageContent.autoRefresh"
-            [filterChangeEvent]="true"
-          ></refresh>
+          <refresh *ngIf="pageContent.autoRefresh" [isAutoRefreshNeeded]="pageContent.autoRefresh" [filterChangeEvent]="true"></refresh>
         </div>
         <div class="filter-status-block">
           <nb-icon
@@ -74,13 +53,7 @@
     <div
       class="row no-gutters main-block"
       id="dashboardbody"
-      [ngClass]="
-        filterCount === 4
-          ? 'four-filter-block'
-          : filterCount === 3
-          ? 'three-filter-block'
-          : 'default-filter-block'
-      "
+      [ngClass]="filterCount === 4 ? 'four-filter-block' : filterCount === 3 ? 'three-filter-block' : 'default-filter-block'"
       (window:resize)="onResize($event)"
     >
       <gridster #gridster [options]="dashboardPagesOptions" *ngIf="dashboardPagesOptions">
@@ -110,67 +83,27 @@
           <ng-container *ngFor="let graph of content.graphs; let j = index">
             <gridster-item [item]="getGridsterItem(graph.id)" [id]="graph.id + '_grid'">
               <app-pie-chart *ngIf="graph.type == 'pie'" [pieChartOptions]="graph"></app-pie-chart>
-              <app-dial-chart
-                *ngIf="graph.type == 'dial'"
-                [dialChartOptions]="graph"
-              ></app-dial-chart>
-              <app-bar-category-chart
-                *ngIf="graph.type == 'bar-category'"
-                [barChartOptions]="graph"
-              >
-              </app-bar-category-chart>
-              <app-hexagonal-chart
-                *ngIf="graph.type == 'hexagon'"
-                [hexChartOptions]="graph"
-              ></app-hexagonal-chart>
-              <app-param-overview
-                *ngIf="graph.type == 'overview'"
-                [paramOptions]="graph"
-              ></app-param-overview>
-              <app-line-chart
-                *ngIf="graph.type == 'line'"
-                [lineChartOptions]="graph"
-              ></app-line-chart>
-              <app-multi-line-chart *ngIf="graph.type == 'multiline'" [multiLineOptions]="graph">
-              </app-multi-line-chart>
-              <app-vertical-bar-category-chart
-                *ngIf="graph.type == 'vertical-bar-category'"
-                [verticalBarChartOptions]="graph"
-              >
+              <app-dial-chart *ngIf="graph.type == 'dial'" [dialChartOptions]="graph"></app-dial-chart>
+              <app-bar-category-chart *ngIf="graph.type == 'bar-category'" [barChartOptions]="graph"> </app-bar-category-chart>
+              <app-gauge *ngIf="graph.type == 'gauge'" [barChartOptions]="graph"> </app-gauge>
+              <app-multi-gauge *ngIf="graph.type == 'multi-gauge'" [barChartOptions]="graph"> </app-multi-gauge>
+              <app-chat-box *ngIf="graph.type == 'chat-box'"> </app-chat-box>
+              <app-hexagonal-chart *ngIf="graph.type == 'hexagon'" [hexChartOptions]="graph"></app-hexagonal-chart>
+              <app-param-overview *ngIf="graph.type == 'overview'" [paramOptions]="graph"></app-param-overview>
+              <app-line-chart *ngIf="graph.type == 'line'" [lineChartOptions]="graph"></app-line-chart>
+              <app-multi-line-chart *ngIf="graph.type == 'multiline'" [multiLineOptions]="graph"> </app-multi-line-chart>
+              <app-vertical-bar-category-chart *ngIf="graph.type == 'vertical-bar-category'" [verticalBarChartOptions]="graph">
               </app-vertical-bar-category-chart>
-              <app-vertical-stacked-chart
-                *ngIf="graph.type == 'vertical-stacked'"
-                [verticalStackOptions]="graph"
-              >
+              <app-vertical-stacked-chart *ngIf="graph.type == 'vertical-stacked'" [verticalStackOptions]="graph">
               </app-vertical-stacked-chart>
-              <app-bar-line-category-chart
-                *ngIf="graph.type == 'bar-line-category'"
-                [barLineChartOptions]="graph"
-              >
+              <app-bar-line-category-chart *ngIf="graph.type == 'bar-line-category'" [barLineChartOptions]="graph">
               </app-bar-line-category-chart>
-              <app-stacked-bar-line-time-chart
-                *ngIf="graph.type == 'stacked-bar-line-time'"
-                [stackedBarLineChartOptions]="graph"
-              >
+              <app-stacked-bar-line-time-chart *ngIf="graph.type == 'stacked-bar-line-time'" [stackedBarLineChartOptions]="graph">
               </app-stacked-bar-line-time-chart>
               <app-box *ngIf="graph.content == 'Single-Box'" [boxProperty]="graph"></app-box>
-              <app-deviation-chart
-                *ngIf="graph.type == 'deviation'"
-                [deviationChartOptions]="graph"
-              >
-              </app-deviation-chart>
-              <app-normal-table
-                *ngIf="graph.type == 'normal-table'"
-                [tableInfo]="graph"
-                [tableID]="graph.id + '_grid'"
-              >
-              </app-normal-table>
-              <app-lazy-table
-                *ngIf="graph.type == 'lazy-table'"
-                [tableInfo]="graph"
-                [tableID]="graph.id + '_grid'"
-              >
-              </app-lazy-table>
+              <app-deviation-chart *ngIf="graph.type == 'deviation'" [deviationChartOptions]="graph"> </app-deviation-chart>
+              <app-normal-table *ngIf="graph.type == 'normal-table'" [tableInfo]="graph" [tableID]="graph.id + '_grid'"> </app-normal-table>
+              <app-lazy-table *ngIf="graph.type == 'lazy-table'" [tableInfo]="graph" [tableID]="graph.id + '_grid'"> </app-lazy-table>
             </gridster-item>
           </ng-container>
         </ng-container>

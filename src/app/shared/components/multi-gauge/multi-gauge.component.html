@@ -1,0 +1,8 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading" nbSpinnerStatus="primary" nbSpinnerSize="small" (window:resize)="onReSize()">
+  <nb-card-body class="custom-card-body">
+    <div echarts [options]="barChartConfig[0]" (chartInit)="onChartInit($event, 0)" class="multi-chart"></div>
+    <div echarts [options]="barChartConfig[1]" (chartInit)="onChartInit($event, 1)" class="multi-chart"></div>
+    <div echarts [options]="barChartConfig[2]" (chartInit)="onChartInit($event, 2)" class="multi-chart"></div>
+    <div echarts [options]="barChartConfig[3]" (chartInit)="onChartInit($event, 3)" class="multi-chart"></div>
+  </nb-card-body>
+</nb-card>

@@ -143,5 +143,8 @@
       }
     }
   },
-  "defaultProject": "TeICXDashboard"
+  "defaultProject": "TeICXDashboard",
+  "cli": {
+    "analytics": false
+  }
 }

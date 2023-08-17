@@ -26,10 +26,7 @@ export class BaseComponent {
   isBackgroundRefreshNeeded = false;
   webSocketEvent;
 
-  constructor(
-    protected dataUpdateService: DataUpdateService,
-    protected dashboardPageService: DashboardPagesService) {
-  }
+  constructor(protected dataUpdateService: DataUpdateService, protected dashboardPageService: DashboardPagesService) {}
 
   initBIReportPageRefresh() {
     const timeout = this.dashboardPageService.getTimeout(1, 0);
@@ -110,5 +107,4 @@ export class BaseComponent {
     clearTimeout(this.biReportRefreshTimeout);
     this.biReportRefreshTimeout = null;
   }
-
 }

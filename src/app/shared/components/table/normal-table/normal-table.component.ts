@@ -17,6 +17,7 @@ import * as moment from 'moment';
 })
 export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked {
   @Input() tableInfo;
+
   @Input() tableID: string;
   tableData: any;
   pageTitle: string;
@@ -65,13 +66,14 @@ export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked
         this.initTableData(event.type);
       });
     } else {
-      this.tableUpdation = this.dataUpdationService.updateLiveData$.subscribe(async event => {
-        this.initTableData(event);
-      });
+      // this.tableUpdation = this.dataUpdationService.updateLiveData$.subscribe(async event => {
+      this.initTableData();
+      // });
     }
   }
 
-  async initTableData(event) {
+  async initTableData(event = {}) {
+    this.calcTableHeight();
     this.loading = true;
     if (this.table && event && event != 'AutoRefreshEvent') {
       this.table.reset();
@@ -80,15 +82,21 @@ export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked
       try {
         this.pageTitle = this.tableInfo.title;
         this.isTableLoaded = true;
-        let tableData;
-        tableData = await this.getTableData(this.deviceId);
+        // let tableData;
+        // tableData = await this.getTableData(this.deviceId);
+        this.tableData = [
+          { depth: 1967.42, inc: 90.74, azi: 153.54, tvd: 448.53 },
+          { depth: 1967.42, inc: 90.74, azi: 153.54, tvd: 448.53 },
+          { depth: 1967.42, inc: 90.74, azi: 153.54, tvd: 448.53 },
+          { depth: 1967.42, inc: 90.74, azi: 153.54, tvd: 448.53 }
+        ];
         this.createTableHeaders();
-        if (tableData && tableData.length) {
-          this.tableData = this.processTableData(tableData);
-        } else {
-          this.tableData = [];
-          this.isPaginatorNeeded = false;
-        }
+        // if (tableData && tableData.length) {
+        // this.tableData = this.processTableData(tableData);
+        // } else {
+        // this.tableData = [];
+        // this.isPaginatorNeeded = false;
+        // }
         this.isPaginatorNeeded = this.tableData.length > this.tableRowCount;
         this.headerIconNeeded = this.tableData.length > 0 && this.tableInfo.csvEndpoint;
       } catch (err) {
@@ -122,7 +130,7 @@ export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked
       this.tableHeight = 'calc(' + parentGrid.style.height + ' - ' + headerAndPaginatorHeight + ')';
       this.changeRef.detectChanges();
     } else {
-      this.tableHeight = this.constants.tableHeight;
+      // this.tableHeight = '11vh';
     }
   }
 
@@ -164,24 +172,29 @@ export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked
   }
 
   createTableHeaders() {
-    this.cols = [];
-    this.cols = _.cloneDeep(this.tableInfo.tableHeaderAndFieldNames);
-    if (this.dynamicHeaders && this.dynamicHeaders.length) {
-      const { dynamicHeaderStartName, isDynamicColsClickable } = this.tableInfo;
-      this.dynamicHeaders.forEach(fieldName => {
-        if (fieldName) {
-          const headerAndFieldName: any = {};
-          headerAndFieldName.field = fieldName;
-          const header = dynamicHeaderStartName ? `${dynamicHeaderStartName}(${fieldName})` : fieldName;
-          headerAndFieldName.header = header;
-          if (isDynamicColsClickable) {
-            headerAndFieldName.isClickable = isDynamicColsClickable;
-          }
-          this.cols.push(headerAndFieldName);
-        }
-      });
-      this.dynamicHeaders = [];
-    }
+    this.cols = [
+      { header: 'DEPTH', field: 'depth' },
+      { header: 'INC', field: 'inc' },
+      { header: 'AZI', field: 'azi' },
+      { header: 'TVD', field: 'tvd' }
+    ];
+    // this.cols = _.cloneDeep(this.tableInfo.tableHeaderAndFieldNames);
+    // if (this.dynamicHeaders && this.dynamicHeaders.length) {
+    //   const { dynamicHeaderStartName, isDynamicColsClickable } = this.tableInfo;
+    //   this.dynamicHeaders.forEach(fieldName => {
+    //     if (fieldName) {
+    //       const headerAndFieldName: any = {};
+    //       headerAndFieldName.field = fieldName;
+    //       const header = dynamicHeaderStartName ? `${dynamicHeaderStartName}(${fieldName})` : fieldName;
+    //       headerAndFieldName.header = header;
+    //       if (isDynamicColsClickable) {
+    //         headerAndFieldName.isClickable = isDynamicColsClickable;
+    //       }
+    //       this.cols.push(headerAndFieldName);
+    //     }
+    //   });
+    //   this.dynamicHeaders = [];
+    // }
   }
 
   initTableProperties() {
@@ -192,7 +205,7 @@ export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked
       if (this.tableInfo.tableRowCount) {
         this.tableRowCount = this.tableInfo.tableRowCount;
       } else {
-        this.tableRowCount = tableDefaultValue.tableRowCount;
+        this.tableRowCount = 4;
       }
     }
   }
@@ -223,7 +236,7 @@ export class NormalTableComponent implements OnInit, OnDestroy, AfterViewChecked
   }
 
   downloadCsv() {
-    this.chartService.downloadCsv(this.tableInfo.csvEndpoint, this.tableInfo.parameter);
+    // this.chartService.downloadCsv(this.tableInfo.csvEndpoint, this.tableInfo.parameter);
   }
 
   ngOnDestroy() {

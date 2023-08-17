@@ -8,7 +8,7 @@ export class Information {
         single_box: [],
         graphs: [
           {
-            type: 'overview',
+            type: 'multi-gauge',
             title: 'Gauge 1',
             // titleAddOn: 'Last 15 min',
             id: 'gauge_1'
@@ -17,7 +17,7 @@ export class Information {
             // durationRequired: false
           },
           {
-            type: 'overview',
+            type: 'gauge',
             title: 'Gauge 2',
 
             // titleAddOn: 'Last 15 min',
@@ -27,7 +27,7 @@ export class Information {
             // durationRequired: false
           },
           {
-            type: 'overview',
+            type: 'chat-box',
             title: 'Chat Box',
 
             // titleAddOn: 'Last 15 min',
@@ -37,13 +37,13 @@ export class Information {
             // durationRequired: false
           },
           {
-            type: 'overview',
+            type: 'normal-table',
             title: 'Table',
 
             // titleAddOn: 'Last 15 min',
-            id: 'gauge_4'
+            id: 'gauge_4',
             // isPostReq: true,
-            // dataEndPoint: '/live-data/device-connection-type',
+            dataEndPoint: '/live-data/device-connection-type'
             // durationRequired: false
           }
         ]
@@ -54,29 +54,29 @@ export class Information {
       {
         id: 'gauge_1',
         cols: 3,
-        rows: 15,
+        rows: 18,
         y: 0.3,
         x: 0
       },
       {
         id: 'gauge_2',
         cols: 4.5,
-        rows: 15,
+        rows: 18,
         y: 0.3,
         x: 3
       },
       {
         id: 'gauge_3',
         cols: 4,
-        rows: 7.5,
+        rows: 9,
         y: 0.3,
         x: 7.5
       },
       {
         id: 'gauge_4',
         cols: 4,
-        rows: 7.2,
-        y: 8,
+        rows: 9,
+        y: 9.3,
         x: 7.5
       }
     ]

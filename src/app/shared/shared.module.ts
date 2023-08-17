@@ -56,6 +56,9 @@ import { BarChartService } from './services/bar-category-chart/bar-category-char
 import { ConfirmationPopUp } from './components/confirmation-pop-up/confirmation-pop-up.component';
 import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.component';
 import { ParamOverviewComponent } from './components/param-overview/param-overview.component';
+import { GaugeComponent } from './components/gauge/gauge.component';
+import { MultiGaugeComponent } from './components/multi-gauge/multi-gauge.component';
+import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 
 const services = [
   LoggerService,
@@ -106,7 +109,10 @@ const services = [
     StackedBarLineChartComponent,
     ConfirmationPopUp,
     CustomDialogComponent,
-    ParamOverviewComponent
+    ParamOverviewComponent,
+    GaugeComponent,
+    MultiGaugeComponent,
+    ChatBoxComponent
   ],
   providers: [...services, { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }],
   imports: [
@@ -159,7 +165,10 @@ const services = [
     ShowDataComponent,
     StackedBarLineChartComponent,
     CustomDialogComponent,
-    ParamOverviewComponent
+    ParamOverviewComponent,
+    GaugeComponent,
+    MultiGaugeComponent,
+    ChatBoxComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [PopUpComponent, ThresholdSettingsComponent, ConfirmationPopUp, CustomDialogComponent]

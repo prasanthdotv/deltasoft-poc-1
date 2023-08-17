@@ -1,0 +1,15 @@
+<nb-card class="medium-card mb-0" [nbSpinner]="isChartLoading" nbSpinnerStatus="primary" nbSpinnerSize="small" (window:resize)="onReSize()">
+  <nb-card-body class="custom-card-body">
+    <div echarts [options]="barChartConfig" (chartInit)="onChartInit($event)" class="custom-chart"></div>
+    <div class="stock-container">
+      <div class="stock">
+        <span>INC</span>
+        <button class="stock-button" nbButton status="basic">90.64</button>
+      </div>
+      <div class="stock">
+        <span>AZI</span>
+        <button class="stock-button" nbButton status="basic">123.15</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

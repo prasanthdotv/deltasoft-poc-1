@@ -3,7 +3,7 @@ export class Dashboards {
     {
       id: 1,
       title: 'Information',
-      icon: { icon: 'bell', pack: 'font-awesome' },
+      icon: { icon: 'line-chart', pack: 'font-awesome' },
       page_id: ['information'],
       rootPath: '/pages',
       link: '/pages/information',
